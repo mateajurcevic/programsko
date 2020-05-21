@@ -1,3 +1,6 @@
+import random
+
+
 class Kvadrat(object):
 
     def __init__(self, broj = 0):
@@ -37,16 +40,6 @@ class Kvadrat(object):
             return False
 
     def __str__(self):
-##        tekst = ""
-##        if self.__otkriven:
-##            tekst += "otkriven "
-##        else:
-##            tekst += "!otkriven "
-##        if self.__oznaka:
-##            tekst += "oznacen"
-##        else:
-##            tekst += "!oznacen"
-##        print(tekst)
         if self.__oznaka == True:
             return "?"
         if self.__otkriven == False:
@@ -59,22 +52,44 @@ class Kvadrat(object):
             if self.jePrazan == True:
                 return " "
 
+class Polje(object):
+
+    def __init__(self, velicina, broj_mina):
+        self.__velicina = velicina
+        self.__broj_mina = broj_mina
+        self.__kvadrati = [[Kvadrat for j in range(velicina)] for i in range(velicina)]
+        for i in range (velicina):
+            for j in range (velicina):
+                self.__kvadrati[i][j] = Kvadrat(random.randint(-1, random.randint(0, 3)))
+
+
+##print('*** test 1 ***')
+##brojevi = [-1,0,1,2]
+##for broj in brojevi:
+##    k = Kvadrat(broj)
+##    print(k.jeMina, k.jeBroj, k.jePrazan)
+##
+##print('*** test 2 ***')
+##kvadrati = [Kvadrat(broj) for broj in [-1,0,1,2]]
+##print('   oz ot oz ot')
+##for k in kvadrati:
+##    rez = []
+##    rez.append(str(k))
+##    for _ in range(2):
+##        k.oznaci()
+##        rez.append(str(k))
+##        k.otkrij()
+##        rez.append(str(k))
+##    print('%s  %s  %s  %s  %s  ' % tuple(rez))
+
+
+
 
 print('*** test 1 ***')
-brojevi = [-1,0,1,2]
-for broj in brojevi:
-    k = Kvadrat(broj)
-    print(k.jeMina, k.jeBroj, k.jePrazan)
-
-print('*** test 2 ***')
-kvadrati = [Kvadrat(broj) for broj in [-1,0,1,2]]
-print('   oz ot oz ot')
-for k in kvadrati:
-    rez = []
-    rez.append(str(k))
-    for _ in range(2):
-        k.oznaci()
-        rez.append(str(k))
+print('*** rezultat varira zbog slucajnog izbora mina koristenjem random modula ***')
+p = Polje(5,2)
+for red in p._Polje__kvadrati:
+    for k in red:
         k.otkrij()
-        rez.append(str(k))
-    print('%s  %s  %s  %s  %s  ' % tuple(rez))
+        print(k, end = '|')
+    print()
