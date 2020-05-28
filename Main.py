@@ -9,11 +9,6 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
-def main():
-    pass
-
-if __name__ == '__main__':
-    main()
 
 from vjezba_9.Mine.Polje import Polje
 
